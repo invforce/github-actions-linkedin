@@ -1,4 +1,4 @@
-name: Laravel
+name: Variables de Ambiente predeterminadas
 
 on:
   workflow_dispatch:
@@ -9,13 +9,13 @@ jobs:
     runs-on: [self-hosted]
 
     steps:
-    - uses: shivammathur/setup-php@15c43e89cdef867065b0213be354c2841860869e
-      with:
-        php-version: '8.0'
-    - uses: actions/checkout@v3
-    - name: Copy .env
-      run: php -r "file_exists('.env') || copy('.env.example', '.env');"
-    - name: Install Dependencies
-      run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
-    - name: Generate key
-      run: php artisan key:generate
+    - name: Mostrar valores de variables de ambiente
+      run: echo $GITHUB_ACTION &&
+           echo $GITHUB_EVENT_NAME &&
+           echo $GITHUB_REPOSITORY &&
+           echo $GITHUB_RUN_NUMBER &&
+           echo $GITHUB_WORKFLOW &i&
+           echo $GITHUB_WORKSPACE &&
+           echo $RUNNER_NAME &&
+           echo $RUNNER_OS &&
+           echo $RUNNER_ARCH
